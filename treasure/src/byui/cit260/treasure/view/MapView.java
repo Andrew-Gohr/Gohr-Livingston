@@ -1,8 +1,11 @@
 package byui.cit260.treasure.view;
 
+import byui.cit260.treasure.control.ChecklistControl;
 import byui.cit260.treasure.control.GameControl;
+import static byui.cit260.treasure.control.GameControl.Item.lumber;
 import byui.cit260.treasure.control.InventoryControl;
 import byui.cit260.treasure.control.MapControl;
+import byui.cit260.treasure.model.InventoryItem;
 import byui.cit260.treasure.model.Location;
 import byui.cit260.treasure.model.Map;
 import treasure.Treasure;
@@ -14,7 +17,7 @@ import treasure.Treasure;
 @SuppressWarnings("InitializerMayBeStatic")
 public class MapView extends View {
     
-
+    ChecklistControl updateChecklist = new ChecklistControl();
     MapControl mapcontrol;
     public static int displayPromptMessage = 0;
     public static String defaultMenu = "";
@@ -161,7 +164,7 @@ mapcontrol = new MapControl();
                     //MapView shore = new MapView();
                     //shore.display();
                     MapView.defaultMenu = MapView.beachShoreMenu;
-                    this.visitBeachShore();
+                    this.visitBeachShore1();
                     break;
                 case "b": // Quit Help menu
                     mapLocation = "Main";
@@ -188,15 +191,17 @@ mapcontrol = new MapControl();
                     break;
                 case "s": // Visit Boat
                     mapLocation = "Beach Shore";
-                    this.visitBeachShore();
-                    this.console.println("display Shore menu");
+                    //this.visitBeachShore();
+                    this.console.println("display Boat menu");
                     MapView boat = new MapView();
-                    boat.display();
+                    //boat.display();
                     MapView.defaultMenu = MapView.beachShoreMenu;
+                    this.visitBeachShore2();
+                    
                     break;
                 case "p": // Visit Main Beach
                     mapLocation = "Beach";
-                    this.visitBeachShore();
+                    this.visitBeachShore2();
                     this.console.println("display Beach menu");
                     MapView beach = new MapView();
                     beach.display();
@@ -275,7 +280,7 @@ mapcontrol = new MapControl();
 
                 case "s": // Visit Shore
                     mapLocation = "Island Shore";
-                    this.visitBeachShore();
+                    this.visitBeachShore2();
                     System.out.println("display Shore menu");
                     MapView shore = new MapView();
                     shore.display();
@@ -360,27 +365,65 @@ mapcontrol = new MapControl();
         trader.display();
     }
 
-    private void visitBeachShore() {
+    private void visitBeachShore1() {
         this.console.println(" Go to Beach Shore ");
         MapView.mapLocation = "Beach Shore";
         MapView.defaultMenu = MapView.beachShoreMenu;
+        
+       // BoatMenuView boat = new BoatMenuView();
+        //boat.display();
         MapView buildBoat = new MapView();
         buildBoat.display();
        
 
     }
     
+     private void visitBeachShore2() {
+        this.console.println(" Go to Boat Menu ");
+        MapView.mapLocation = "Beach Shore";
+        MapView.defaultMenu = MapView.beachMapMenu;
+        
+        BoatMenuView boat = new BoatMenuView();
+        boat.display();
+        //MapView buildBoat = new MapView();
+        //buildBoat.display();
+       
+
+    }
+    
     private void buildBoat() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        InventoryControl inventory = new InventoryControl();
-        //if (inventory.displayInventory());
-        this.console.println(" You used the sail and lumber to build a boat, now you can cross the ocean!");
+        InventoryControl inventoryList = new InventoryControl();
+        InventoryItem[] inventoryItem = Treasure.getCurrentGame().getInventoryItem();
+        
+        
+        int boatWood = inventoryItem[0].getAmount();
+        int boatSail = inventoryItem[1].getAmount();
+        
+        if ((boatSail) >= 1 & (boatWood) >= 1){
+        //InventoryControl inventoryList
+               // = new InventoryControl();
+        //if inventoryList[GameControl.Item.lumber.ordinal()] = lumber;
+        //if (inventory[0].getAmount(1));
+        //(GameControl.getSortedInventoryList());
+            
+        ChecklistControl.BuildBoat(true);
+        this.console.println(" \n \n You used the sail and lumber to build a boat, now you can cross the ocean! \n \n");
         MapView.mapLocation = "Beach Shore";
+        
+    }
+        else 
+        {this.console.println(" \n \n You need the sail and lumber to build a boat, before you can cross the ocean! \n \n ");
+                }
+        
+        }
+    
+        
         //System.out.print(shoreMenu);
 
         //BoatMenuView boat = new BoatMenuView();
        // boat.display()
-    }
+    
 
     private void visitOcean() {
 

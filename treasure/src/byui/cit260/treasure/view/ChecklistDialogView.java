@@ -17,11 +17,22 @@ import java.util.logging.Logger;
  * @author braden
  */
 public class ChecklistDialogView extends View {
+ public static String defaultMenu = "";
+//    public ChecklistDialogView(String promptMessage) {
+//        super(promptMessage);
+//    }
 
-    public ChecklistDialogView(String promptMessage) {
-        super(promptMessage);
+    public ChecklistDialogView() {
+        super(defaultMenu);
+        
     }
 
+   // public ChecklistDialogView() {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
+
+   
+   
     @Override
     public String getInput() {
         boolean valid = false; //indicates if the name has been retrieved

@@ -22,8 +22,7 @@ public class GetInput extends View {
     }
     
     //Scanner keyboard = new Scanner(System.in); //keyboard input stream
-
-    
+   
 
     @Override
     public char getChar() {

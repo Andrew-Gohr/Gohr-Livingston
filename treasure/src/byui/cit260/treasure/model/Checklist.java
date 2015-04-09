@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Checklist implements Serializable {
 
     //class instance variable
-    private int progress;
+    private static int progress;
     private boolean lumber;
     private boolean sail;
     private boolean payDolphin;
@@ -29,7 +29,7 @@ public class Checklist implements Serializable {
     }
 
     public void setProgress(int progress) {
-        this.progress = progress;
+        Checklist.progress = progress;
     }
 
     public Boolean getLumber(boolean lumber) {
